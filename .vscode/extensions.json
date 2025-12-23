@@ -1,0 +1,11 @@
+{
+    "unwantedRecommendations": [ ],
+    "recommendations": [
+        "ms-python.python",
+        "detachhead.basedpyright",
+        "streetsidesoftware.code-spell-checker",
+        "charliermarsh.ruff",
+        "tamasfe.even-better-toml",
+        "ms-python.debugpy",
+    ]
+}

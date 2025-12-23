@@ -1,0 +1,20 @@
+repos:
+  - repo: local
+    hooks:
+      - id: basedpyright
+        entry: uv run basedpyright
+        name: basedpyright
+        language: system
+        types: [python]
+        stages: [pre-commit]
+        pass_filenames: true
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.10
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+default_language_version:
+  python: python3

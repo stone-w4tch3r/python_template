@@ -1,0 +1,109 @@
+[project]
+name = "python_template"
+description = "Super basic python project template"
+version = "1.0.0"
+license = { text = "GPL-3.0" }
+authors = [
+    { name = "@stone-w4tch3r", email = "no@e.mail" },
+]
+dependencies = [
+    "python-dotenv>=1.0.1",
+    "rusty-results>=1.1.1",
+    "colorlog>=6.10.1",
+    "httpx>=0.28.1",
+]
+requires-python = ">=3.14"
+
+[dependency-groups]
+dev = [
+    "pytest-cov>=7.0.0",
+    "pytest>=9.0.1",
+    "pre-commit",
+    "poethepoet",
+    "ruff>=0.14.6",
+    "basedpyright>=1.34.0",
+    "pytest-asyncio>=1.3.0",
+]
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/app"]
+
+[tool.ruff]
+extend-exclude = [
+    "venv",
+    ".venv",
+    "*.egg",
+    "*.egg-info",
+    "**/dist",
+    "**/build",
+    "**/__pycache__",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    "*.so",
+    "wrktrs",
+    ".git",
+    ".pytest_cache",
+]
+target-version = "py314"
+line-length = 130
+
+[tool.basedpyright]
+pythonPlatform = "Linux"
+pythonVersion = "3.14"
+venv = ".venv"
+venvPath = "."
+typeCheckingMode = "strict"
+reportAny = "error"
+reportImplicitStringConcatenation = "none"
+reportUnusedCallResult = "none"
+reportUnnecessaryIsInstance = "none"
+exclude = [
+    "venv",
+    ".venv",
+    "*.egg",
+    "*.egg-info",
+    "**/dist",
+    "**/build",
+    "**/__pycache__",
+    "*.pyc",
+    "*.pyo",
+    "*.pyd",
+    "*.so",
+    "wrktrs",
+    ".git",
+    ".pytest_cache",
+]
+
+[tool.ruff.lint]
+ignore = ["D203", "D213", "SIM108"]
+extend-select = [
+    "B",   # flake8-bugbear (find likely bugs and design issues)
+    "A",   # flake8-builtins (avoid shadowing built-in functions)
+    "I",   # isort (import sorting, as mentioned previously)
+    "C4",  # flake8-comprehensions (improve comprehensions)
+    "SIM", # flake8-simplify (simplify code)
+    "PT",  # flake8-pytest-style (pytest-specific best practices)
+    "UP",  # pyupgrade (modernize code to newer Python versions)
+    "RUF", # Ruff-specific rules (various checks)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "PT018"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+python_files = ["test_*.py"]
+
+[tool.poe.tasks]
+test = "pytest"
+app = "python -m app"
+
+[tool.poe.tasks.lint_full]
+shell = "basedpyright . && ruff check --fix . && ruff format ."
