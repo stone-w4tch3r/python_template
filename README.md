@@ -1,5 +1,7 @@
 # Python Project Template
 
+[Русский](README.ru.md) | English
+
 A modern, opinionated Python 3.14+ template with strict type safety and enforced best practices. Built for production-ready experience from the first commit.
 
 ## What You Get
