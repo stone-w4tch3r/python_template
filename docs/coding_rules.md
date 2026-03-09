@@ -83,14 +83,6 @@ def is_loaded(obj: object) -> TypeIs[Item]:
     return isinstance(obj, Item) and obj.ready
 ```
 
-**Document complex types**:
-```
-Settings = dict[str, str | int | bool | None]
-
-def apply_settings(s: Settings) -> None:
-    ...
-```
-
 ### Type Patterns
 
 **TypedDict** (for JSON/config):
